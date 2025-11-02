@@ -37,45 +37,38 @@ export const FerrisWheel: React.FC = () => {
     <div className="h-screen text-white overflow-hidden relative flex flex-col" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%)' }}>
       {/* 헤더 배경 분리선 */}
       <div className="absolute top-0 left-0 right-0" style={{ height: '1px', background: 'linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.3) 50%, transparent 100%)', zIndex: 25 }} />
-      {/* 헤더 - 반응형 최적화 */}
-      <header className="relative w-full z-30" style={{ padding: 'clamp(0.8rem, 2vw, 1.2rem) clamp(1rem, 3vw, 1.5rem)', backgroundColor: 'rgba(10, 10, 10, 0.95)', backdropFilter: 'blur(10px)' }}>
-        <div className="flex justify-between items-center">
-          <div className="space-y-1.5 flex-1 min-w-0">
-            <h1 className="font-title" style={{ fontSize: 'clamp(1.5rem, 4vw, 2.2rem)', fontWeight: '600', color: '#ffffff', lineHeight: '1.1' }}>
+      {/* 헤더 - 안정적인 반응형 */}
+      <header className="relative w-full z-30 px-4 py-3 sm:px-6 sm:py-4" style={{ backgroundColor: 'rgba(10, 10, 10, 0.95)', backdropFilter: 'blur(10px)' }}>
+        <div className="flex justify-between items-center max-w-7xl mx-auto">
+          <div className="space-y-1 sm:space-y-2 flex-1 min-w-0">
+            <h1 className="font-title text-xl sm:text-2xl lg:text-3xl font-semibold text-white leading-tight">
               <span className="gradient-text">BAIKAL</span>
-              <span className="font-body" style={{ fontWeight: '300', color: '#888888' }}> SYSTEMS</span>
+              <span className="font-light text-gray-400"> SYSTEMS</span>
             </h1>
             <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
-              <p className="font-caption" style={{ fontSize: 'clamp(0.6rem, 1.5vw, 0.65rem)', color: '#666666', lineHeight: '1.4' }}>
+              <p className="font-caption text-xs sm:text-sm text-gray-500">
                 MVP Exhibition — {mvpProjects.length} Projects
               </p>
-              <p className="font-display hidden sm:block" style={{ fontSize: 'clamp(0.7rem, 2vw, 0.85rem)', color: '#cccccc', fontStyle: 'italic', lineHeight: '1.3' }}>
+              <p className="font-display hidden sm:block text-sm text-gray-300 italic">
                 "Where Innovation Meets Excellence"
               </p>
             </div>
           </div>
           
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-3">
             <div className="text-right">
-              <div className="font-title" style={{ fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', color: '#ffffff', lineHeight: '1' }}>
+              <div className="font-title text-lg sm:text-xl lg:text-2xl text-white">
                 {String(currentIndex + 1).padStart(2, '0')}
-                <span className="font-caption" style={{ fontSize: 'clamp(0.6rem, 1.5vw, 0.7rem)', color: '#888888', marginLeft: '0.25rem' }}>
+                <span className="font-caption text-xs sm:text-sm text-gray-400 ml-1">
                   / {String(mvpProjects.length).padStart(2, '0')}
                 </span>
               </div>
             </div>
             <button
               onClick={() => setIsAutoPlay(!isAutoPlay)}
-              className="transition-all hover:scale-105"
-              style={{ 
-                padding: 'clamp(0.4rem, 1.5vw, 0.6rem)', 
-                borderRadius: '50%', 
-                backgroundColor: 'rgba(255,255,255,0.08)', 
-                backdropFilter: 'blur(20px)',
-                border: '1px solid rgba(255,255,255,0.1)'
-              }}
+              className="p-2 sm:p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/10 transition-all hover:scale-105"
             >
-              {isAutoPlay ? <Pause size={14} /> : <Play size={14} />}
+              {isAutoPlay ? <Pause size={16} /> : <Play size={16} />}
             </button>
           </div>
         </div>
@@ -83,13 +76,13 @@ export const FerrisWheel: React.FC = () => {
         <div className="absolute bottom-0 left-0 right-0" style={{ height: '1px', background: 'linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.2) 50%, transparent 100%)' }} />
       </header>
 
-      {/* 메인 전시 영역 - 반응형 최적화 */}
-      <main className="relative flex-1 flex items-center" style={{ paddingTop: '1rem', paddingBottom: '4rem' }}>
-        <div className="w-full max-w-7xl mx-auto px-4 lg:px-6">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12" style={{ minHeight: '60vh' }}>
+      {/* 메인 전시 영역 - 안정적인 레이아웃 */}
+      <main className="flex-1 py-4 sm:py-6 lg:py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[70vh]">
             
-            {/* 프로젝트 이미지 - 반응형 */}
-            <div className="w-full lg:w-1/2 flex justify-center">
+            {/* 프로젝트 이미지 */}
+            <div className="order-2 lg:order-1">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentProject.id}
@@ -97,7 +90,7 @@ export const FerrisWheel: React.FC = () => {
                   animate={{ opacity: 1, scale: 1, x: 0 }}
                   exit={{ opacity: 0, scale: 0.95, x: 20 }}
                   transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  className="relative w-full max-w-md lg:max-w-lg"
+                  className="relative w-full max-w-lg mx-auto"
                 >
                   <div 
                     className="overflow-hidden bg-gray-900 relative"
@@ -154,8 +147,8 @@ export const FerrisWheel: React.FC = () => {
               </AnimatePresence>
             </div>
 
-            {/* 프로젝트 정보 - 반응형 */}
-            <div className="w-full lg:w-1/2 lg:pl-8">
+            {/* 프로젝트 정보 */}
+            <div className="order-1 lg:order-2">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentProject.id}
@@ -166,22 +159,9 @@ export const FerrisWheel: React.FC = () => {
                   className="space-y-4"
                   style={{ maxWidth: '450px' }}
                 >
-                  {/* 카테고리 - 반응형 */}
-                  <div className="inline-block">
-                    <span 
-                      className="font-caption"
-                      style={{
-                        padding: 'clamp(0.5rem, 2vw, 0.65rem) clamp(1.2rem, 4vw, 1.8rem)',
-                        background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)',
-                        color: '#ffffff',
-                        borderRadius: '1.5rem',
-                        fontSize: 'clamp(0.65rem, 2vw, 0.75rem)',
-                        fontWeight: '600',
-                        letterSpacing: '0.06em',
-                        lineHeight: '1.2',
-                        boxShadow: '0 8px 25px rgba(139, 92, 246, 0.3)'
-                      }}
-                    >
+                  {/* 카테고리 */}
+                  <div className="inline-block mb-4">
+                    <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs sm:text-sm font-semibold rounded-full tracking-wide shadow-lg">
                       {currentProject.category}
                     </span>
                   </div>
@@ -407,49 +387,22 @@ export const FerrisWheel: React.FC = () => {
         </div>
       </main>
 
-      {/* 갤러리 슬로건 - 반응형 타이포그래피 */}
-      <div className="fixed bottom-4 sm:bottom-8 left-2 sm:left-4 z-20">
-        <div className="space-y-1 sm:space-y-1.5">
-          <p 
-            className="font-display"
-            style={{ 
-              fontSize: 'clamp(0.75rem, 2vw, 0.9rem)', 
-              color: '#ffffff',
-              fontStyle: 'italic',
-              fontWeight: '500',
-              lineHeight: '1.3',
-              letterSpacing: '-0.01em'
-            }}
-          >
+      {/* 갤러리 슬로건 */}
+      <div className="fixed bottom-4 sm:bottom-6 left-4 sm:left-6 z-20">
+        <div className="space-y-1">
+          <p className="font-display text-sm sm:text-base text-white italic font-medium">
             Innovation in Motion
           </p>
-          <p 
-            className="font-caption hidden sm:block"
-            style={{ 
-              fontSize: 'clamp(0.55rem, 1.5vw, 0.6rem)', 
-              color: '#888888',
-              lineHeight: '1.4',
-              letterSpacing: '0.05em'
-            }}
-          >
+          <p className="font-caption text-xs text-gray-400 tracking-wider hidden sm:block">
             CURATED COLLECTION OF DIGITAL EXCELLENCE
           </p>
         </div>
       </div>
 
-      {/* 네비게이션 컨트롤 - 반응형 */}
-      <div className="fixed bottom-4 sm:bottom-8 right-2 sm:right-4 z-20">
-        <div 
-          className="flex items-center gap-1 sm:gap-2"
-          style={{
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
-            backdropFilter: 'blur(20px)',
-            borderRadius: 'clamp(0.75rem, 2vw, 1rem)',
-            padding: 'clamp(0.5rem, 1.5vw, 0.625rem) clamp(0.75rem, 2vw, 1rem)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            boxShadow: '0 8px 20px rgba(0, 0, 0, 0.4)'
-          }}
-        >
+      {/* 네비게이션 컨트롤 */}
+      <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-20">
+        <div className="flex items-center gap-2 bg-black/70 backdrop-blur-xl rounded-xl px-3 py-2 sm:px-4 sm:py-3 border border-white/10 shadow-2xl">
+        
           <button
             onClick={prevProject}
             className="transition-all hover:scale-105 hover:bg-white/10"
