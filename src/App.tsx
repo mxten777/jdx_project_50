@@ -1,7 +1,7 @@
-import { FerrisWheel } from './components/FerrisWheel';
+import { PerfectPortfolio } from './components/PerfectPortfolio';
 
 function App() {
-  return <FerrisWheel />;
+  return <PerfectPortfolio />;
 }
 
 export default App;
