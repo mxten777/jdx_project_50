@@ -75,7 +75,7 @@ export const FerrisWheel: React.FC = () => {
                 border: '1px solid rgba(255,255,255,0.1)'
               }}
             >
-              {isAutoPlay ? <Pause size={window.innerWidth < 768 ? 12 : 14} /> : <Play size={window.innerWidth < 768 ? 12 : 14} />}
+              {isAutoPlay ? <Pause size={14} /> : <Play size={14} />}
             </button>
           </div>
         </div>
@@ -84,12 +84,12 @@ export const FerrisWheel: React.FC = () => {
       </header>
 
       {/* 메인 전시 영역 - 반응형 최적화 */}
-      <main className="relative flex-1 flex items-center" style={{ paddingTop: 'clamp(0.5rem, 1vw, 0.5rem)', paddingBottom: 'clamp(3rem, 8vw, 5rem)' }}>
-        <div className="w-full max-w-7xl mx-auto" style={{ padding: '0 clamp(1rem, 3vw, 1.5rem)' }}>
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-10" style={{ minHeight: 'calc(100vh - 200px)' }}>
+      <main className="relative flex-1 flex items-center" style={{ paddingTop: '1rem', paddingBottom: '4rem' }}>
+        <div className="w-full max-w-7xl mx-auto px-4 lg:px-6">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12" style={{ minHeight: '60vh' }}>
             
             {/* 프로젝트 이미지 - 반응형 */}
-            <div className="w-full lg:flex-1 flex justify-center" style={{ maxWidth: '100%' }}>
+            <div className="w-full lg:w-1/2 flex justify-center">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentProject.id}
@@ -97,8 +97,7 @@ export const FerrisWheel: React.FC = () => {
                   animate={{ opacity: 1, scale: 1, x: 0 }}
                   exit={{ opacity: 0, scale: 0.95, x: 20 }}
                   transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  className="relative w-full"
-                  style={{ maxWidth: '480px' }}
+                  className="relative w-full max-w-md lg:max-w-lg"
                 >
                   <div 
                     className="overflow-hidden bg-gray-900 relative"
@@ -156,7 +155,7 @@ export const FerrisWheel: React.FC = () => {
             </div>
 
             {/* 프로젝트 정보 - 반응형 */}
-            <div className="w-full lg:flex-1" style={{ maxWidth: '100%', paddingLeft: '0', paddingTop: '1rem' }}>
+            <div className="w-full lg:w-1/2 lg:pl-8">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentProject.id}
@@ -597,8 +596,10 @@ export const FerrisWheel: React.FC = () => {
               animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, x: 20, y: -20 }}
               transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="fixed z-50 left-1/2 top-1/2 sm:left-auto sm:top-1/2 sm:right-[8%]"
+              className="fixed z-50"
               style={{ 
+                top: '50%',
+                left: '50%',
                 transform: 'translate(-50%, -50%)'
               }}
             >
