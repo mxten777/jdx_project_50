@@ -1,7 +1,7 @@
-import { PerfectPortfolio } from './components/PerfectPortfolio';
+import { VibePortfolio } from './components/VibePortfolio'
 
 function App() {
-  return <PerfectPortfolio />;
+  return <VibePortfolio />
 }
 
 export default App;
