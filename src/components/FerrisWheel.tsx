@@ -597,14 +597,9 @@ export const FerrisWheel: React.FC = () => {
               animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, x: 20, y: -20 }}
               transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="fixed z-50 left-1/2 top-1/2 sm:left-auto sm:top-1/2"
+              className="fixed z-50 left-1/2 top-1/2 sm:left-auto sm:top-1/2 sm:right-[8%]"
               style={{ 
-                transform: 'translate(-50%, -50%)',
-                '@media (min-width: 640px)': {
-                  transform: 'translateY(-50%)',
-                  right: '8%',
-                  left: 'auto'
-                }
+                transform: 'translate(-50%, -50%)'
               }}
             >
               <div
